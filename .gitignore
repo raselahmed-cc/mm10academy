@@ -6,10 +6,10 @@
 # Environment & Secrets
 .env
 wp-config.php
+wp-config-production.php
 wp-salt.php
 
-# Uploads (media files)
-# wp-content/uploads/  # temporarily tracked for deployment
+# Uploads included for deployment
 
 # Cache directories
 wp-content/cache/
