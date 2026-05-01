@@ -9,7 +9,11 @@ wp-config.php
 wp-config-production.php
 wp-salt.php
 
-# Uploads included for deployment
+# Uploads (upload manually via FTP/File Manager)
+wp-content/uploads/
+
+# Large zip files
+*.zip
 
 # Cache directories
 wp-content/cache/
