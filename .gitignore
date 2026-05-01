@@ -5,11 +5,11 @@
 
 # Environment & Secrets
 .env
-# wp-config.php  # temporarily tracked for production deploy
+wp-config.php
 wp-salt.php
 
-# Uploads (media files - too large for git)
-wp-content/uploads/
+# Uploads (media files)
+# wp-content/uploads/  # temporarily tracked for deployment
 
 # Cache directories
 wp-content/cache/
