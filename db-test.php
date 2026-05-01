@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 
 $db_name = 'mm10_mm10wpdb';
 $db_user = 'mm10_mm10wpdb';
-$db_pass = 'A2an8Aqluj6#5Jxl';
+$db_pass = 'DN0kb-Ksmfu#HaI#';
 $db_host = 'localhost';
 
 echo "<h3>DB Connection Test</h3>";
