@@ -1,0 +1,112 @@
+.pp-filterable-gallery {
+	clear: both;
+}
+.pp-filterable-gallery .pp-gallery-grid-item {
+    float: left;
+    text-align: center;
+}
+
+.pp-filterable-gallery .pp-gallery-masonry-item {
+    float: left;
+}
+
+.pp-filterable-gallery.pp-photo-gallery {
+    position: relative;
+    text-align: center;
+	opacity: 1;
+}
+
+.pp-filterable-gallery .pp-photo-gallery-content {
+    position: relative;
+    text-align: center;
+	overflow: hidden;
+}
+
+/* Overlay */
+.pp-filterable-gallery .pp-gallery-overlay {
+	position: absolute;
+	overflow: hidden;
+	transition: .5s ease;
+	margin: 0 auto;
+}
+
+.pp-filterable-gallery .pp-gallery-overlay .pp-caption {
+	margin-bottom: 10px;
+	line-height: normal;
+}
+
+.pp-filterable-gallery.pp-photo-gallery .pp-photo-gallery-content .pp-gallery-img {
+	-webkit-transition: all 0.5s ease-out;
+	-moz-transition: all 0.5s ease-out;
+	-o-transition: all 0.5s ease-out;
+	-ms-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	will-change: transform;
+}
+
+.pp-filterable-gallery .pp-gallery-overlay .pp-overlay-icon span,
+.pp-filterable-gallery .pp-gallery-overlay .pp-overlay-icon span:before {
+	width: auto;
+	height: auto;
+}
+
+/* Gallery Filters */
+.pp-gallery-filters-toggle {
+	display: none;
+	padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background: #fafafa;
+}
+.pp-gallery-filters-toggle:after {
+    content: "+";
+    float: right;
+    font-weight: bold;
+}
+
+.pp-gallery-filters {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-left: 0;
+	margin-bottom: 30px;
+}
+
+.pp-gallery-filters .pp-gallery-filter-label {
+	display: inline-block;
+	padding: 5px 10px;
+	margin-right: 10px;
+	border-color: transparent;
+	cursor: pointer;
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	-ms-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.pp-gallery-filters .pp-gallery-filter-label:hover {
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	-ms-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.pp-gallery-filters .pp-gallery-filter-label p {
+	margin: 0;
+}
+
+.pp-filterable-gallery-pagination {
+	width: 100%;
+	clear: both;
+}
+.pp-filterable-gallery-pagination a {
+	transition: all 0.2s ease-out 0s;
+}
+
+.pp-photo-gallery-caption-lightbox {
+	display: none;
+}

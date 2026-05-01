@@ -1,0 +1,40 @@
+# Files to exclude during deployment (used by rsync)
+.git/
+.github/
+.gitignore
+.env.example
+.deployignore
+README.md
+wp-config-production.php
+license.txt
+readme.html
+
+# Local dev / diagnostic files
+check-*.php
+deep-diag.php
+diag-*.php
+fix-*.php
+local-phpinfo.php
+regen-cache.php
+test_page.html
+tp.html
+builder.html
+homepage_builder.html
+homepage_public.html
+homepage.html
+
+# Backup/archive files
+wp-content/backuply/
+wp-content/_archived-cache-back/
+wp-content/_archived-w3tc-config/
+wp-content/plugins/_archived-zip-backups/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/logs/
+wp-content/cache/
+wp-content/litespeed/
+*.bak
+*.bak-wprocket
+
+# Uploads managed separately (not via git deploy)
+wp-content/uploads/

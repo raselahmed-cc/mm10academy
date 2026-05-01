@@ -1,0 +1,23 @@
+#fl-field-social_button_typography .fl-typography-field-align,
+#fl-field-separator_text_typography .fl-typography-field-align,
+#fl-field-button_typography .fl-typography-field-align {
+	display: none !important;
+}
+
+#fl-builder-settings-section-captcha .fl-builder-settings-description {
+	padding-top: 15px;
+    padding-bottom: 0;
+}
+#fl-builder-settings-section-captcha .fl-builder-settings-description a {
+	text-decoration: underline !important;
+}
+
+#fl-field-facebook_login_help .fl-field-control,
+#fl-field-google_login_help .fl-field-control {
+	padding-left: 10px !important;
+	font-style: italic;
+}
+#fl-field-facebook_login_help .fl-field-control a,
+#fl-field-google_login_help .fl-field-control a {
+	text-decoration: underline;
+}

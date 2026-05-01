@@ -1,0 +1,38 @@
+.pp-member-wrapper {
+    overflow: hidden;
+}
+
+.pp-member-wrapper a,
+.pp-member-wrapper a:hover {
+    text-decoration: none;
+}
+
+.pp-member-wrapper .pp-member-image.pp-image-crop-circle img {
+    -webkit-border-radius: 100% !important;
+    -moz-border-radius: 100% !important;
+    border-radius: 100% !important;
+}
+
+
+.pp-member-social-profiles ul li {
+    display:  inline-block;
+    position: relative;
+    margin-right:15px;
+    margin-bottom: 5px;
+}
+
+.pp-member-social-profiles ul {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.pp-member-social-profiles ul li:last-child {
+    margin-right: 0;
+}
+
+.pp-member-social-profiles li a {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}

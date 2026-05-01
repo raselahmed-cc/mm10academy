@@ -1,0 +1,34 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via rsync
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete --exclude-from='.deployignore'
+          path: ./
+          remote_path: ${{ secrets.STAGING_DEPLOY_PATH }}
+          remote_host: ${{ secrets.STAGING_DEPLOY_HOST }}
+          remote_user: ${{ secrets.STAGING_DEPLOY_USER }}
+          remote_key: ${{ secrets.STAGING_DEPLOY_KEY }}
+
+      - name: Clear cache on staging
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.STAGING_DEPLOY_HOST }}
+          username: ${{ secrets.STAGING_DEPLOY_USER }}
+          key: ${{ secrets.STAGING_DEPLOY_KEY }}
+          script: |
+            cd ${{ secrets.STAGING_DEPLOY_PATH }}
+            rm -rf wp-content/litespeed/cache/*
+            wp cache flush --path=${{ secrets.STAGING_DEPLOY_PATH }} 2>/dev/null || true

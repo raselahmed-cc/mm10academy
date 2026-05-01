@@ -1,0 +1,176 @@
+/* ---------------------------------- */
+/* Container */
+/* ---------------------------------- */
+
+.pp-card-slider-container .pp-card-slider {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:center;
+    width: 100%;
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 14px 80px rgba(34,35,58,.2);
+    padding: 25px;
+	border-radius: 25px;
+	opacity: 0;
+    transition: all .3s;
+}
+.pp-card-slider-container .pp-card-slider.pp-card-slider-initialized {
+	opacity: 1;
+}
+
+/* ---------------------------------- */
+/* Swiper Container */
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-item,
+.pp-card-slider-container .swiper-slide {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content:center;
+}
+
+/* ---------------------------------- */
+/* Links */
+/* ---------------------------------- */
+
+.pp-card-slider-container .pp-card-slider-box-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    display: block;
+    z-index: 11;
+}
+
+.pp-card-slider-container .pp-card-slider-image a:not[data-has-lightbox] {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.pp-card-slider-container .pp-card-slider-image a[data-has-lightbox] {
+	text-decoration: none !important;
+	border: 0 !important;
+}
+
+/* ---------------------------------- */
+/* Image */
+/* ---------------------------------- */
+
+.pp-card-slider-container .pp-card-slider-image {
+    width: 300px;
+    flex-shrink: 0;
+    height: 300px;
+    border-radius: 20px;
+    margin-left: -80px;
+    margin-right: 40px;
+    position: relative;
+}
+
+.pp-card-slider-container .pp-card-slider-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 1;
+    border-radius: 20px;
+    transition: all .3s;
+}
+
+.pp-card-slider-container .pp-card-slider-image:not(.has-lightbox):after,
+.pp-card-slider-container .pp-card-slider-image.has-lightbox a:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	opacity: .8;
+}
+
+/* ---------------------------------- */
+/* Content Container */
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-content-wrap {
+	display: flex;
+	flex-direction: column;
+	padding-right: 30px;
+	margin: 0 20px;
+}
+
+/* ---------------------------------- */
+/* Title */
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-title {
+	order: 1;
+	margin: 10px 0;
+}
+
+/* ---------------------------------- */
+/* Meta*/
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-meta {
+	order: 2;
+}
+
+.pp-card-slider-container .pp-card-slider-meta-icon {
+	margin-right: 5px;
+}
+
+/* ---------------------------------- */
+/* Excerpt */
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-content {
+	order: 3;
+}
+
+/* ---------------------------------- */
+/* Card Button */
+/* ---------------------------------- */
+.pp-card-slider-container .pp-card-slider-button {
+    display: inline-flex;
+    padding: 15px 35px;
+    border-radius: 50px;
+	color: #fff;
+	background-color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    justify-content: center;
+    text-align: center;
+	letter-spacing: 1px;
+}
+
+.pp-card-slider-container .pp-card-slider-button-wrap {
+	order: 4;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+/* ---------------------------------- */
+/* Pagination */
+/* ---------------------------------- */
+
+.pp-card-slider-container .swiper-pagination-bullet {
+	width: 11px;
+	height: 11px;
+	border-radius: 10px;
+	margin: 8px 0;
+}
+
+.pp-card-slider-container .swiper-container-horizontal .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	width: 30px;
+}
+
+.pp-card-slider-container .swiper-container-vertical .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	height: 30px;
+}

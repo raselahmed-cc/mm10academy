@@ -1,0 +1,49 @@
+.pp-table-wrap .tablesaw-sortable .tablesaw-sortable-head button {
+	background: none !important;
+}
+
+.pp-table-content thead {
+	border: 0;
+	background: none;
+}
+
+.pp-table-content thead tr th {
+	font-size: 14px;
+}
+
+.pp-table-content thead tr:first-child th {
+	font-family: inherit;
+	text-shadow: none;
+}
+
+.pp-table-content tbody tr th,
+.pp-table-content tbody tr td {
+	font-size: 14px;
+}
+
+.pp-table-content .pp-table-row th[colspan] + .is-empty,
+.pp-table-content .pp-table-row td[colspan] + .is-empty {
+    display: none;
+}
+
+.pp-table-content th button,
+.pp-table-content.tablesaw-sortable th.tablesaw-sortable-head button {
+	box-shadow: none !important;
+	padding: 0;
+}
+
+.pp-builder-message {
+	padding: 10px;
+	background-color: #ffeed5;
+	font-family: monospace;
+	font-size: 15px;
+	border: 1px solid #ffd18c;
+	color: #000 !important;
+}
+.pp-builder-message h4 {
+	margin-top: 0;
+	font-family: monospace;
+	font-size: 18px;
+	font-style: normal;
+	color: #000 !important;
+}

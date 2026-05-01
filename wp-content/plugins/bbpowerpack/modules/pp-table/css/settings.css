@@ -1,0 +1,6 @@
+.pp-group-field-control .fl-unit-field-input {
+	flex: 1;
+}
+.pp-group-field-control .fl-unit-field-inputs input[type="number"] {
+	width: 100%;
+}

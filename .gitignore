@@ -1,0 +1,71 @@
+# =========================
+# WordPress .gitignore
+# MM10 Academy Production
+# =========================
+
+# Environment & Secrets
+.env
+wp-config.php
+wp-salt.php
+
+# Uploads (media files - too large for git)
+wp-content/uploads/
+
+# Cache directories
+wp-content/cache/
+wp-content/litespeed/
+wp-content/advanced-cache.php
+wp-content/advanced-cache.php.bak*
+wp-content/advanced-cache-ba.php.bak
+wp-content/_archived-cache-back/
+wp-content/_archived-w3tc-config/
+
+# Backup files
+wp-content/backuply/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/plugins/_archived-zip-backups/
+*.bak
+*.bak-wprocket
+
+# Logs
+wp-content/logs/
+wp-content/plugins/error_log
+*.log
+error_log
+debug.log
+
+# Diagnostic / Debug files (local dev only)
+check-*.php
+deep-diag.php
+diag-*.php
+fix-*.php
+local-phpinfo.php
+regen-cache.php
+test_page.html
+tp.html
+builder.html
+
+# Local development
+wp-content/mu-plugins/
+wp-content/db-error.php
+wp-content/mc_data/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node / Build tools (if any)
+node_modules/
+.npm/
+package-lock.json

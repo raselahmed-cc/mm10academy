@@ -1,0 +1,125 @@
+.pp-photo-container .pp-photo-align-left {
+    text-align: left;
+}
+.pp-photo-container .pp-photo-align-center {
+    text-align: center;
+}
+.pp-photo-container .pp-photo-align-right {
+    text-align: right;
+}
+
+.pp-photo {
+	line-height: 0;
+	position: relative;
+}
+.pp-photo-align-left {
+	text-align: left;
+}
+.pp-photo-align-center {
+	text-align: center;
+}
+.pp-photo-align-right {
+	text-align: right;
+}
+.pp-photo-content {
+	display: inline-block;
+	line-height: 0;
+	position: relative;
+	max-width: 100%;
+}
+.pp-photo-content img {
+	display: inline;
+	max-width: 100%;
+}
+.fl-builder-content[data-shrink="1"] img.pp-photo-img:not([src$=".svg"]) {
+    width: auto;
+    height: auto;
+}
+.fl-builder-content[data-shrink="1"] .shrink-header-fix img.pp-photo-img:not([src$=".svg"]) {
+	width: auto !important;
+}
+.pp-photo-crop-circle img {
+	-webkit-border-radius: 100% !important;
+	-moz-border-radius: 100% !important;
+	border-radius: 100% !important;
+}
+.pp-photo-caption {
+	font-size: 13px;
+	line-height: 18px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+    width: 100%;
+}
+.pp-photo-caption-below {
+	padding-bottom: 20px;
+	padding-top: 10px;
+}
+.pp-photo-align-center .pp-photo-caption-below {
+	margin: 0 auto;
+}
+.pp-photo-caption-overlay {
+	bottom: 0;
+	color: #fff;
+	left: 0;
+	padding: 10px 15px;
+	position: absolute;
+	right: 0;
+	transition:opacity 0.3s ease-in;
+}
+.pp-overlay-wrap .pp-overlay-bg {
+    bottom: 0;
+    content: '';
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .3s linear;
+}
+.pp-photo-caption-hover {
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .3s linear;
+}
+.pp-photo-container .pp-photo-content:hover .pp-overlay-bg,
+.pp-photo-container .pp-photo-content:hover .pp-photo-caption-hover,
+.pp-photo-container .pp-photo-content.on-hover .pp-overlay-bg,
+.pp-photo-container .pp-photo-content.on-hover .pp-photo-caption-hover {
+    opacity: 1;
+    transition: opacity .3s linear;
+}
+.pp-photo-container a:focus {
+    outline: none;
+}
+.pp-photo-container .pp-photo-content .pp-photo-content-inner {
+    overflow: hidden;
+    position: relative;
+}
+.pp-photo-content-inner img {
+	transition-duration: 0.3s;
+}
+
+.pp-photo-rollover .pp-photo-content {
+	display: inline-grid;
+    grid-template-columns: 1fr;
+}
+.pp-photo-rollover .pp-photo-content-inner {
+	grid-row-start: 1;
+    grid-column-start: 1;
+	opacity: 1;
+	/* transition: none !important; */
+}
+.pp-photo-rollover .pp-photo-content.is-hover .pp-photo-content-inner:first-child,
+.pp-photo-rollover .pp-photo-content:not(.is-hover) .pp-photo-content-inner:last-of-type {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.pp-photo-rollover .pp-overlay-bg,
+.pp-photo-rollover .pp-photo-caption-hover {
+	display: none !important;
+}

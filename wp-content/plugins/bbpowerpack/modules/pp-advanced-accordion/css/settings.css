@@ -1,0 +1,5 @@
+.fl-builder-settings #fl-field-content_edit .fl-field-label,
+.fl-builder-settings #fl-field-content_edit .fl-field-label label {
+	line-height: 0 !important;
+	margin: 0 !important;
+}

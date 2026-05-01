@@ -1,0 +1,9 @@
+.pp-video-gallery .pp-video-gallery-filters {
+	flex-direction: column;
+}
+.pp-video-gallery .pp-video-gallery-filters .pp-video-gallery-filter {
+    margin: 0;
+}
+.pp-video-gallery .pp-video-gallery-filters .pp-video-gallery-filter:not(.pp-filter--active) {
+	display: none;
+}

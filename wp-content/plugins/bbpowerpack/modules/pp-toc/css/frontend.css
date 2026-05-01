@@ -1,0 +1,199 @@
+/* ------------------------------------- */
+/* Container */
+/* ------------------------------------- */
+.pp-toc-container {
+	width: auto;
+	height: auto;
+	overflow: hidden;
+	transition: opacity 0.3s, visibility 0.3s;
+}
+/*
+body:not(.fl-builder-edit) .pp-toc-container.is-empty {
+	display: none;
+}
+*/
+
+/* ------------------------------------- */
+/* Header Section*/
+/* ------------------------------------- */
+.pp-toc-container .pp-toc-header {
+	display: flex;
+	width: 100%;
+	padding: 10px 20px;
+	background-color: #555;
+	align-items:center;
+	cursor: pointer;
+}
+
+/* Header Title */
+.pp-toc-container .pp-toc-header-title {
+	flex: 10;
+	text-align: left;
+	font-size: 18px;
+	color: white;
+}
+
+/* Header Icon when collapsed */
+.pp-toc-container .header-icon-collapse {
+	display: none;
+	font-size: 22px;
+}
+
+/* Header Icon when expanded */
+.pp-toc-container .header-icon-expand {
+	display: none;
+	font-size: 22px;
+}
+
+/*--------- CSS for toggle show of icons (Active stage for Icons) -----------*/
+.pp-toc-container .active {
+	text-align: right;
+	display: inline-block;
+}
+
+/* ------------------------------------- */
+/* Body Section*/
+/* ------------------------------------- */
+
+.pp-toc-container .pp-toc-separator {
+	height: 5px;
+	width: auto;
+	background-color: #000;
+	margin-bottom: 0;
+}
+
+/* ------------------------------------- */
+/* Body Section*/
+/* ------------------------------------- */
+
+.pp-toc-container .pp-toc-body {
+	display: block;
+	height: auto;
+	padding: 20px;
+	background-color: #ccc;
+	color: #000;
+}
+
+/* The UL or OL element class */
+.pp-toc-container .pp-toc-list-wrapper {
+	margin: 0;
+	padding: 0;
+}
+
+.pp-toc-container .pp-toc-listicon-wrapper {
+	display: flex;
+	align-items: baseline;
+}
+
+/* Unordered List Bullets */
+.pp-toc-container ul.pp-toc-list-wrapper,
+.pp-toc-container .pp-toc-list-wrapper ul {
+	list-style-type: none;
+}
+
+.pp-toc-container .pp-toc-list-wrapper.pp-toc-list-bullet li::before {
+	content: "\2022";
+	color: #000;
+	font-weight: bold;
+	display: inline-block; /* Needed to add space between the bullet and the text */
+	width: 1em;
+	margin-left: -1.5em;
+	font-size: 22px;
+}
+
+/* Ordered List Numbers */
+.pp-toc-container ol.pp-toc-list-wrapper {
+	list-style: none;
+	counter-reset: item;
+}
+
+.pp-toc-container .pp-toc-list-wrapper ol {
+	list-style: none;
+	counter-reset: item;
+}
+
+.pp-toc-container .pp-toc-list-wrapper.pp-toc-list-number li::before {
+	content: counters(item, ".") " ";
+	color: #000;
+	width: 2em;
+	margin-left: -2.5em;
+	margin-right: 0.5em;
+	text-align: right;
+	font-size: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.pp-toc-container .pp-toc-list-wrapper.pp-toc-list-number > li::before {
+	content: counters(item, ".") ". ";
+}
+
+.pp-toc-container .pp-toc-list-wrapper.pp-toc-list-number li {
+	counter-increment: item;
+}
+
+.pp-toc-container .pp-toc-list-wrapper.pp-toc-list-number li a {
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* ------------------------------------- */
+/* Sticky TOC Section*/
+/* ------------------------------------- */
+.pp-toc-sticky-fixed {
+	position: fixed;
+	top: 0;
+	opacity: .8;
+	z-index: 1000;
+}
+.pp-toc-is-sticky.pp-toc--stop {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.admin-bar .pp-toc-sticky-fixed {
+	top: 32px;
+}
+.admin-bar.fl-builder-edit .pp-toc-sticky-fixed {
+	top: 45px;
+}
+
+/* Sticky Custom Position */
+.pp-toc-sticky-custom {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	opacity: .8;
+	z-index: 1000;
+}
+
+.pp-toc-sticky-overflow {
+	height: 85vh !important;
+	overflow: scroll !important; 
+}
+
+/* ------------------------------------- */
+/* Scroll To Top Section*/
+/* ------------------------------------- */
+.pp-toc-scroll-top-container {
+	display: flex;
+	height: auto;
+	width: auto;
+	padding: 25px;
+	background-color: #ccc;
+	position: fixed;
+	bottom: 10px;
+	z-index: 1000;
+	cursor: pointer;
+}
+
+.pp-toc-scroll-align-left {
+	left: 10px;
+}
+.pp-toc-scroll-align-right {
+	right: 10px;
+}
+
+.pp-toc-scroll-top-icon {
+	font-size: 22px;
+	margin: auto auto auto auto;
+}

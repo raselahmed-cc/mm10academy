@@ -1,0 +1,109 @@
+/* MM10 SportsPress Admin UI */
+
+body.post-type-sp_player #wpbody-content .wrap h1,
+body.post-type-sp_team #wpbody-content .wrap h1,
+body.post-type-sp_event #wpbody-content .wrap h1,
+body.post-type-sp_staff #wpbody-content .wrap h1,
+body.taxonomy-sp_position #wpbody-content .wrap h1,
+body.taxonomy-sp_league #wpbody-content .wrap h1,
+body.taxonomy-sp_season #wpbody-content .wrap h1 {
+    color: #0f2f4f;
+    font-weight: 700;
+}
+
+body.post-type-sp_player .wp-list-table,
+body.post-type-sp_team .wp-list-table,
+body.post-type-sp_event .wp-list-table,
+body.post-type-sp_staff .wp-list-table,
+body.taxonomy-sp_position .wp-list-table,
+body.taxonomy-sp_league .wp-list-table,
+body.taxonomy-sp_season .wp-list-table {
+    border: 1px solid #d9e6f3;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(15, 47, 79, 0.08);
+}
+
+body.post-type-sp_player .wp-list-table thead th,
+body.post-type-sp_team .wp-list-table thead th,
+body.post-type-sp_event .wp-list-table thead th,
+body.post-type-sp_staff .wp-list-table thead th,
+body.taxonomy-sp_position .wp-list-table thead th,
+body.taxonomy-sp_league .wp-list-table thead th,
+body.taxonomy-sp_season .wp-list-table thead th {
+    background: linear-gradient(135deg, #123d68 0%, #0a5fae 100%);
+    color: #fff;
+    border-bottom-color: #0a4d8f;
+    font-size: 12px;
+}
+
+body.post-type-sp_player .wp-list-table thead th a,
+body.post-type-sp_team .wp-list-table thead th a,
+body.post-type-sp_event .wp-list-table thead th a,
+body.post-type-sp_staff .wp-list-table thead th a {
+    color: #fff;
+}
+
+body.post-type-sp_player .wp-list-table tbody tr:nth-child(even),
+body.post-type-sp_team .wp-list-table tbody tr:nth-child(even),
+body.post-type-sp_event .wp-list-table tbody tr:nth-child(even),
+body.post-type-sp_staff .wp-list-table tbody tr:nth-child(even) {
+    background: #fbfdff;
+}
+
+body.post-type-sp_player .wp-list-table tbody tr:hover,
+body.post-type-sp_team .wp-list-table tbody tr:hover,
+body.post-type-sp_event .wp-list-table tbody tr:hover,
+body.post-type-sp_staff .wp-list-table tbody tr:hover {
+    background: #f1f7ff;
+}
+
+body.post-type-sp_player .subsubsub a.current,
+body.post-type-sp_team .subsubsub a.current,
+body.post-type-sp_event .subsubsub a.current,
+body.post-type-sp_staff .subsubsub a.current {
+    color: #0a5fae;
+    font-weight: 700;
+}
+
+body.post-type-sp_player .page-title-action,
+body.post-type-sp_team .page-title-action,
+body.post-type-sp_event .page-title-action,
+body.post-type-sp_staff .page-title-action {
+    border-color: #0a5fae;
+    color: #0a5fae;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+body.post-type-sp_player .page-title-action:hover,
+body.post-type-sp_team .page-title-action:hover,
+body.post-type-sp_event .page-title-action:hover,
+body.post-type-sp_staff .page-title-action:hover {
+    background: #0a5fae;
+    color: #fff;
+}
+
+body.post-type-sp_player #adminmenu .menu-icon-sp_event > a,
+body.post-type-sp_team #adminmenu .menu-icon-sp_event > a,
+body.post-type-sp_event #adminmenu .menu-icon-sp_event > a,
+body.post-type-sp_staff #adminmenu .menu-icon-sp_event > a,
+body.taxonomy-sp_position #adminmenu .menu-icon-sp_event > a,
+body.taxonomy-sp_league #adminmenu .menu-icon-sp_event > a,
+body.taxonomy-sp_season #adminmenu .menu-icon-sp_event > a {
+    background: linear-gradient(90deg, rgba(10, 95, 174, 0.2), transparent) !important;
+}
+
+body.post-type-sp_player .tablenav,
+body.post-type-sp_team .tablenav,
+body.post-type-sp_event .tablenav,
+body.post-type-sp_staff .tablenav {
+    padding: 8px 0;
+}
+
+body.post-type-sp_player .tablenav .button,
+body.post-type-sp_team .tablenav .button,
+body.post-type-sp_event .tablenav .button,
+body.post-type-sp_staff .tablenav .button {
+    border-radius: 6px;
+}

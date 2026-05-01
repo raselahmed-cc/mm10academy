@@ -1,0 +1,169 @@
+/**
+ * UABB SVG Animator – Static CSS
+ *
+ * Base styles for the SVG stroke-drawing animation.
+ * Per-node overrides (size, color, alignment) live in frontend.css.php.
+ *
+ * @package UABB SVG Animator Module
+ */
+
+/* ---- Layout ---- */
+
+.uabb-svg-animator {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.uabb-svg-wrapper {
+	display: block;
+	width: 100%;
+}
+
+.uabb-svg-container {
+	position: relative;
+	display: inline-block;
+	line-height: 0;
+}
+
+/* ---- SVG element ---- */
+
+.uabb-svg-icon {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+/* Base stroke style for all animatable elements */
+.uabb-svg-icon path,
+.uabb-svg-icon circle,
+.uabb-svg-icon rect,
+.uabb-svg-icon line,
+.uabb-svg-icon polyline,
+.uabb-svg-icon polygon,
+.uabb-svg-icon ellipse {
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+/* ---- Path animation states ---- */
+
+.uabb-svg-icon path.uabb-svg-path,
+.uabb-svg-icon circle.uabb-svg-path,
+.uabb-svg-icon rect.uabb-svg-path,
+.uabb-svg-icon line.uabb-svg-path,
+.uabb-svg-icon polyline.uabb-svg-path,
+.uabb-svg-icon polygon.uabb-svg-path,
+.uabb-svg-icon ellipse.uabb-svg-path {
+	-webkit-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	will-change: stroke-dashoffset;
+}
+
+/* Animated state – clear will-change to release GPU layer */
+.uabb-svg-animator.uabb-svg-animated .uabb-svg-path {
+	will-change: auto;
+}
+
+/* ---- Viewport trigger: hide until in-view ---- */
+
+.uabb-svg-animator[data-animation-trigger="viewport"] .uabb-svg-icon {
+	opacity: 0;
+	-webkit-transition: opacity 0.3s ease-in-out;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.uabb-svg-animator.uabb-svg-in-view .uabb-svg-icon {
+	opacity: 1;
+}
+
+/* ---- Replay cursor ---- */
+
+.uabb-svg-animator[data-replay-on-click="yes"] .uabb-svg-container {
+	cursor: pointer;
+}
+
+.uabb-svg-animator[data-replay-on-click="yes"] .uabb-svg-container:hover {
+	opacity: 0.8;
+	-webkit-transition: opacity 0.3s ease;
+	transition: opacity 0.3s ease;
+}
+
+/* ---- Placeholder (no icon selected) ---- */
+
+.uabb-svg-placeholder {
+	padding: 20px;
+	text-align: center;
+	color: #666;
+	background: #f9f9f9;
+	border: 2px dashed #ccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.uabb-svg-placeholder p {
+	margin: 0;
+}
+
+/* ---- BB Editor: always show SVG fully rendered ---- */
+
+.fl-builder-edit .uabb-svg-animator .uabb-svg-icon {
+	opacity: 1 !important;
+}
+
+/* Reset stroke-dasharray on all SVG shapes in the editor (not just .uabb-svg-path)
+   so the icon / photo SVG is visible before JS has a chance to run. */
+.fl-builder-edit .uabb-svg-icon path,
+.fl-builder-edit .uabb-svg-icon circle,
+.fl-builder-edit .uabb-svg-icon rect,
+.fl-builder-edit .uabb-svg-icon line,
+.fl-builder-edit .uabb-svg-icon polyline,
+.fl-builder-edit .uabb-svg-icon polygon,
+.fl-builder-edit .uabb-svg-icon ellipse {
+	stroke-dasharray: none !important;
+	stroke-dashoffset: 0 !important;
+	transition: none !important;
+	fill-opacity: 1 !important;
+}
+
+/* ---- Accessibility: reduce motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+	.uabb-svg-animator * {
+		-webkit-animation-duration: 0.01s !important;
+		animation-duration: 0.01s !important;
+		-webkit-animation-delay: 0s !important;
+		animation-delay: 0s !important;
+		-webkit-transition-duration: 0.01s !important;
+		transition-duration: 0.01s !important;
+	}
+}
+
+/* ---- High contrast ---- */
+
+@media (prefers-contrast: high) {
+	.uabb-svg-icon path,
+	.uabb-svg-icon circle,
+	.uabb-svg-icon rect,
+	.uabb-svg-icon line,
+	.uabb-svg-icon polyline,
+	.uabb-svg-icon polygon,
+	.uabb-svg-icon ellipse {
+		stroke-width: 3px;
+	}
+}
+
+/* ---- RTL ---- */
+
+[dir="rtl"] .uabb-svg-animator {
+	direction: rtl;
+}
+
+/* ---- Responsive fallback ---- */
+/* max-width and height are already set on .uabb-svg-icon in the base rule.
+   No override needed here — the per-node responsive CSS (frontend.css.php)
+   controls breakpoint sizes, and !important would override those values. */

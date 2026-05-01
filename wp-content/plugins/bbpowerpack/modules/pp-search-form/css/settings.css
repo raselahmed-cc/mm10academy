@@ -1,0 +1,3 @@
+form.fl-builder-pp-search-form-settings select option[value=related]{
+	display:none;
+}

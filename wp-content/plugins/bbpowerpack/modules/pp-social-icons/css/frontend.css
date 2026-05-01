@@ -1,0 +1,26 @@
+.pp-social-icons {
+	display: flex;
+}
+.pp-social-icons-vertical {
+	flex-direction: column;
+}
+.pp-social-icons-vertical .pp-social-icon:last-of-type {
+	margin-bottom: 0 !important;
+}
+.pp-social-icons-horizontal .pp-social-icon:last-of-type {
+	margin-right: 0 !important;
+}
+.pp-social-icons-horizontal .pp-social-icon:first-child {
+	margin-left: 0 !important;
+}
+
+.pp-social-icons .pp-social-icon {
+	display: inline-block;
+	line-height: 0;
+}
+.pp-social-icons a {
+	font-family: "Helvetica",Verdana,Arial,sans-serif;
+}
+.pp-social-icons .pp-x-icon {
+	font-weight: bold;
+}

@@ -1,0 +1,228 @@
+.pp-login-form-wrap {
+	position: relative;
+}
+.pp-login-form-wrap:before {
+	content: "";
+}
+.pp-login-form-wrap .pp-field-group {
+	margin-bottom: 10px;
+}
+.pp-login-form-wrap .pp-field-group > label {
+	display: block;
+}
+.pp-login-form-wrap .pp-field-group a {
+	cursor: pointer;
+}
+.pp-login-form-wrap .pp-field-group .pp-login-form--input {
+	width: 100%;
+}
+.pp-login-form-wrap .pp-field-inner {
+	position: relative;
+	display: inline-flex;
+	width: 100%;
+}
+.pp-login-form-wrap .pp-field-group.pp-field-type-recaptcha .pp-grecaptcha,
+.pp-login-form-wrap .pp-field-group.pp-field-type-hcaptcha .pp-hcaptcha {
+	display: inline-block;
+}
+.pp-login-form-wrap .pp-field-group.pp-field-type-recaptcha .pp-lf-error,
+.pp-login-form-wrap .pp-field-group.pp-field-type-hcaptcha .pp-lf-error {
+	display: block;
+}
+.pp-login-form-wrap.pp-event-disabled .pp-login-form {
+	pointer-events: none;
+	opacity: 0.2;
+}
+.pp-login-form-wrap.pp-event-disabled:before {
+	position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+	background-repeat: no-repeat;
+    background-size: 50px;
+    background-position: 50%;
+}
+.pp-login-form-wrap .pp-lf-error {
+	color: red;
+}
+.pp-login-form-wrap .pp-login-form > .pp-lf-error {
+	display: block;
+	margin-top: 15px;
+}
+
+.pp-login-form-wrap.wordfence-2fa .pp-field-group:not(.wordfence_2fa):not(.pp-field-type-submit) {
+    display: none;
+}
+
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw {
+	display: inline-block;
+	background: none !important;
+    border: 1px solid transparent;
+    box-shadow: none;
+	color: #000;
+	opacity: 0.4;
+    font-size: 14px;
+    line-height: 2;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: none;
+}
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw:focus {
+	opacity: 0.7;
+}
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw span {
+	position: relative;
+	color: inherit;
+}
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw:not(.pwd-toggled) span.pw-hidden,
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw.pwd-toggled span.pw-visible {
+	display: none;
+}
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw svg {
+	fill: currentColor;
+	height: 15px;
+}
+.pp-login-form .pp-login-form-field button.pp-lf-toggle-pw svg path {
+	fill: #000;
+}
+
+.pp-login-form .pp-social-login-wrap {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	user-select: none;
+}
+.pp-login-form .pp-social-login-wrap.pp-social-login--layout-stacked {
+	flex-direction: column;
+}
+.pp-login-form .pp-social-login-button {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	margin-right: 10px;
+	color: #fff;
+	transition: all 0.2s;
+}
+.pp-login-form .pp-social-login-button:last-of-type {
+	margin-right: 0;
+}
+.pp-login-form .pp-social-login-wrap.pp-social-login--layout-stacked .pp-social-login-button {
+	margin-right: 0;
+	margin-bottom: 8px;
+	width: 100%;
+}
+.pp-login-form .pp-social-login-wrap.pp-social-login--layout-stacked .pp-social-login-button:last-of-type {
+	margin-bottom: 0;
+}
+.pp-login-form .pp-social-login-button span {
+	display: inline-block;
+}
+.pp-login-form .pp-social-login-button span svg {
+	height: 24px;
+    width: 24px;
+    vertical-align: top;
+}
+.pp-login-form .pp-social-login-button:not(.pp-google-login-button) span svg path {
+	fill: #fff;
+	transition: all 0.2s;
+}
+.pp-login-form .pp-social-login-button.pp-google-login-button span.pp-social-login-icon {
+	background-color: #fff;
+	padding: 6px;
+	margin: 3px;
+}
+.pp-login-form .pp-social-login-button.pp-fb-login-button {
+	background-color: #4267b2;
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-fb-login-button {
+	color: #4267b2;
+	background-color: transparent;
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-google-login-button {
+	color: #dc4e41;
+	background-color: transparent;
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-fb-login-button:hover {
+	background-color: rgba(66, 103, 178, 0.1);
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-google-login-button:hover {
+	background-color: rgba(220, 78, 65, 0.1);
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button {
+	border: 1px solid;
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-fb-login-button svg path {
+	fill: #4267b2;
+}
+.pp-login-form .pp-social-login--transparent .pp-social-login-button.pp-google-login-button svg path {
+	fill: #dc4e41;
+}
+.pp-login-form .pp-social-login-button span.pp-social-login-icon {
+	display: flex;
+	flex: 0 0 auto;
+	padding: 10px;
+}
+.pp-login-form .pp-social-login-button span.pp-social-login-label {
+	overflow: hidden;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+	flex: 1 1 auto;
+	margin: 0 20px 0 10px;
+	padding: 10px 0;
+	font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+	letter-spacing: .25px;
+	font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.pp-login-form .pp-social-login-button.pp-google-login-button span.pp-social-login-label {
+	font-family: "Google Sans", arial, sans-serif;
+}
+.pp-login-form .pp-social-login-wrap.pp-social-login--layout-stacked span.pp-social-login-label {
+	text-align: center;
+}
+
+.pp-login-form .pp-login-form-sep {
+	margin-top: 20px;
+	text-align: center;
+}
+.pp-login-form .pp-login-form-sep-text {
+	display: inline-block;
+	position: relative;
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.pp-login-form .pp-login-form-sep-text:before,
+.pp-login-form .pp-login-form-sep-text:after {
+	content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+	border-width: 0;
+	border-style: solid;
+	border-bottom-width: 1px;
+	width: 5px;
+}
+.pp-login-form .pp-login-form-sep-text:before {
+	right: 100%;
+}
+.pp-login-form .pp-login-form-sep-text:after {
+	left: 100%;
+}
+
+.pp-social-login .g_id_signin iframe {
+	margin: 0 !important;
+}

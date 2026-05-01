@@ -1,0 +1,50 @@
+.wp-block {} /*  (.wp-block {} ensures MT files load in Gutenberg editor) */
+
+/*  MICROTHEMER STYLES  */
+
+
+/*= Sidebar =================== */
+
+/** Sidebar >> Widget title **/
+.widget-title {
+	/* MT [ google_font: 1 | variant: 400normal ] */
+	font-family: 'Open Sans Condensed' !important;
+	text-transform: uppercase !important;
+}
+
+
+/*= Testimonials ============== */
+
+/** Testimonials >> Tvo testimonial name **/
+.tvo-testimonial-name {
+	color: rgb(10, 36, 99) !important;
+}
+
+/** Testimonials >> Tvo relative paragraph **/
+.tvo-relative p {
+	color: rgb(38, 33, 33) !important;
+	font-weight: normal !important;
+}
+
+/** Testimonials >> Tvo testimonial role **/
+.tvo-testimonial-role {
+	font-weight: normal !important;
+}
+
+
+/*= Video ===================== */
+
+/** Video >> Wpd optimised video **/
+.wpd-optimised-video__thumbnail {
+	border: 1px solid rgb(234, 232, 232) !important;
+	border-radius: 5px !important;
+}
+
+
+/*= Blog ====================== */
+
+/** Blog >> Ast single post order entry title **/
+.ast-single-post-order .entry-title {
+	text-align: center !important;
+}
+

@@ -1,0 +1,104 @@
+/* ---------------------------------------- */
+/* Content Ticker Container */
+/* ---------------------------------------- */
+.pp-content-ticker-container {
+	height: auto;
+	width: auto;
+	display: flex;
+	overflow: hidden;
+	background-color: #f4f4f4;
+	border: 1px solid #000;
+	transition: 0.3s;
+}
+
+/* ---------------------------------------- */
+/* Heading Section*/
+/* ---------------------------------------- */
+.pp-content-ticker-container .pp-content-ticker-heading {
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
+	align-items: center;
+	padding: 10px 15px;
+	background-color: #333;
+	color: #fff;
+	font-size: 18px;
+	position: relative;
+}
+
+.pp-content-ticker-container .pp-content-ticker-heading-icon {
+	margin-right: 5px;
+}
+
+/* ---------------------------------------- */
+/* Content Section*/
+/* ---------------------------------------- */
+.pp-content-ticker-container .pp-content-ticker-wrap {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	padding: 10px 15px;
+	width: 100%;
+}
+
+.pp-content-ticker-container .pp-content-ticker {
+	overflow: hidden;
+}
+
+.pp-content-ticker-container .pp-content-ticker-image {
+	height: auto;
+	width: 40px;
+	margin-right: 15px;
+	flex-shrink: 0;
+}
+
+.pp-content-ticker .swiper-wrapper {
+	align-items: center;
+}
+
+.pp-content-ticker-container .pp-content-ticker-content {
+	display: flex;
+	align-items: center;
+	padding-left: 10px;
+}
+
+.pp-content-ticker-container .pp-content-ticker-item-title {
+	font-size: 20px;
+	margin: 0;
+}
+
+.pp-content-ticker-container .pp-content-ticker-author {
+	margin-right: 8px;
+}
+
+.pp-content-ticker-container .pp-content-ticker-meta-icon {
+	margin-right: 2px;
+}
+
+/* ---------------------------------------- */
+/* Navigation Section*/
+/* ---------------------------------------- */
+.pp-content-ticker-container .pp-content-ticker-navigation {
+	display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.pp-content-ticker-container .swiper-button-prev,
+.pp-content-ticker-container .swiper-button-next {
+	display: inline-flex;
+	align-items: center;
+	position: static;
+	font-size: 22px;
+	background: 0 0;
+	text-align: center;
+	width: auto;
+	height: auto;
+	margin: auto 10px;
+	transition: 0.3s;
+}
+
+.pp-content-ticker-container .pp-content-ticker-navigation .swiper-button-prev:after,
+.pp-content-ticker-container .pp-content-ticker-navigation .swiper-button-next:after {
+	content: '';
+}

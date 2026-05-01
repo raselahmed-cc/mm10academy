@@ -1,0 +1,4 @@
+.fl-builder-pp-file-download-settings #fl-field-files .fl-field-control .fl-form-field {
+	flex-direction: column;
+    align-items: flex-start;
+}

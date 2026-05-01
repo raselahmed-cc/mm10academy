@@ -1,0 +1,12 @@
+.fl-builder-settings .pp-module--photo-size-hidden select[name="item_image_src"],
+.fl-builder-settings .pp-module--photo-size-hidden .fl-photo-preview-filename {
+	display: none !important;
+}
+.fl-builder-settings .pp-module--photo-size-hidden .fl-photo-preview-controls {
+	display: flex;
+	align-items: center;
+}
+#fl-field-heading_typography .fl-typography-field-align,
+#fl-field-content_title_typography .fl-typography-field-align {
+	display: none !important;
+}

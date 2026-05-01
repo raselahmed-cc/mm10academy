@@ -1,0 +1,44 @@
+.pp-hotspot span.pp-marker-title {
+	position: absolute;
+    bottom: -30px;
+    left: -50px;
+    right: -50px;
+    width: auto;
+	background: #ef4f4f;
+    color: #fff;
+}
+.pp-tooltip-close {
+	cursor: pointer;
+}
+.pp-marker-title.sr-only {
+	position: absolute !important;
+    height: 1px !important;
+    width: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px,1px,1px,1px);
+    -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+    clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+    overflow: hidden !important;
+	border: 0 !important;
+	box-shadow: none !important;
+}
+.tooltipster-sidetip .tooltipster-arrow {
+    overflow: visible;
+}
+.tooltipster-sidetip.tooltipster-top .tooltipster-arrow-uncropped {
+    bottom: -2px;
+}
+.tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow-uncropped {
+    top: -12px;
+}
+.tooltipster-sidetip.tooltipster-left .tooltipster-arrow-uncropped {
+    right: -2px;
+}
+.tooltipster-sidetip.tooltipster-right .tooltipster-arrow-uncropped {
+    left: -12px;
+}
+.tooltipster-sidetip .tooltipster-arrow-background {
+    display: none !important;
+}
