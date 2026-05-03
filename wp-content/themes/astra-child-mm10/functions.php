@@ -122,6 +122,60 @@ function mm10_bb_seed_recursive_replace_urls( $value, $from, $to ) {
     return $value;
 }
 
+function mm10_bb_seed_array_to_mixed_object_tree( $value ) {
+    if ( is_object( $value ) ) {
+        foreach ( $value as $key => $item ) {
+            $value->{$key} = mm10_bb_seed_array_to_mixed_object_tree( $item );
+        }
+        return $value;
+    }
+
+    if ( ! is_array( $value ) ) {
+        return $value;
+    }
+
+    $keys    = array_keys( $value );
+    $is_list = ( $keys === range( 0, count( $value ) - 1 ) );
+
+    if ( $is_list ) {
+        foreach ( $value as $index => $item ) {
+            $value[ $index ] = mm10_bb_seed_array_to_mixed_object_tree( $item );
+        }
+        return $value;
+    }
+
+    $object = new stdClass();
+    foreach ( $value as $key => $item ) {
+        $object->{$key} = mm10_bb_seed_array_to_mixed_object_tree( $item );
+    }
+
+    return $object;
+}
+
+function mm10_bb_seed_normalize_meta_value( $meta_key, $value ) {
+    if ( '_fl_builder_enabled' === $meta_key ) {
+        return (string) $value;
+    }
+
+    if ( '_fl_builder_data' === $meta_key || '_fl_builder_draft' === $meta_key ) {
+        if ( ! is_array( $value ) ) {
+            return $value;
+        }
+
+        foreach ( $value as $node_id => $node_value ) {
+            $value[ $node_id ] = mm10_bb_seed_array_to_mixed_object_tree( $node_value );
+        }
+
+        return $value;
+    }
+
+    if ( '_fl_builder_data_settings' === $meta_key ) {
+        return mm10_bb_seed_array_to_mixed_object_tree( $value );
+    }
+
+    return $value;
+}
+
 function mm10_bb_seed_find_target_post( array $record ) {
     $source_id = isset( $record['ID'] ) ? (int) $record['ID'] : 0;
     if ( $source_id > 0 ) {
@@ -141,7 +195,7 @@ function mm10_bb_seed_find_target_post( array $record ) {
 }
 
 function mm10_apply_beaver_seed_once() {
-    $seed_version = '2026-05-03-v1';
+    $seed_version = '2026-05-03-v2';
     if ( $seed_version === (string) get_option( 'mm10_bb_seed_version', '' ) ) {
         return;
     }
@@ -186,6 +240,7 @@ function mm10_apply_beaver_seed_once() {
             }
 
             $new_value = mm10_bb_seed_recursive_replace_urls( $record['meta'][ $meta_key ], $source_url, $target_url );
+            $new_value = mm10_bb_seed_normalize_meta_value( $meta_key, $new_value );
             update_post_meta( $target_post->ID, $meta_key, $new_value );
             $updated++;
         }
