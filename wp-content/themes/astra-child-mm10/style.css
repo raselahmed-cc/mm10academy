@@ -13,6 +13,26 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: astra-child-mm10
 */
 
+/* Keep frontend WordPress toolbar readable if theme styles bleed into admin bar. */
+body.admin-bar #wpadminbar {
+    background: #1d2327 !important;
+    color: #f0f0f1 !important;
+}
+
+body.admin-bar #wpadminbar .ab-item,
+body.admin-bar #wpadminbar a.ab-item,
+body.admin-bar #wpadminbar > #wp-toolbar span.ab-label,
+body.admin-bar #wpadminbar > #wp-toolbar span.noticon {
+    color: #f0f0f1 !important;
+}
+
+body.admin-bar #wpadminbar .ab-top-menu > li:hover > .ab-item,
+body.admin-bar #wpadminbar .ab-top-menu > li.hover > .ab-item,
+body.admin-bar #wpadminbar a.ab-item:hover,
+body.admin-bar #wpadminbar a.ab-item:focus {
+    color: #72aee6 !important;
+}
+
 /* ==========================================================================
    CHILD PROFILES — My Account Endpoint
    ========================================================================== */
