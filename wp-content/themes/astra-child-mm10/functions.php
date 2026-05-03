@@ -85,6 +85,94 @@ add_action( 'wp_enqueue_scripts', function() {
 
 }, 999 );
 
+function mm10_get_beaver_builder_node_count( $post_id ) {
+    $post_id = (int) $post_id;
+    if ( $post_id <= 0 ) {
+        return 0;
+    }
+
+    $data = get_post_meta( $post_id, '_fl_builder_data', true );
+
+    return is_array( $data ) ? count( $data ) : 0;
+}
+
+function mm10_get_preferred_homepage_id() {
+    $candidates = array();
+
+    $home_page = get_page_by_path( 'home', OBJECT, 'page' );
+    if ( $home_page instanceof WP_Post ) {
+        $candidates[] = (int) $home_page->ID;
+    }
+
+    $homepage_page = get_page_by_path( 'homepage', OBJECT, 'page' );
+    if ( $homepage_page instanceof WP_Post ) {
+        $candidates[] = (int) $homepage_page->ID;
+    }
+
+    $candidates[] = 15;
+    $candidates   = array_values( array_unique( array_filter( array_map( 'intval', $candidates ) ) ) );
+
+    foreach ( $candidates as $candidate_id ) {
+        $candidate = get_post( $candidate_id );
+        if ( ! ( $candidate instanceof WP_Post ) || 'page' !== $candidate->post_type || 'publish' !== $candidate->post_status ) {
+            continue;
+        }
+
+        if ( mm10_get_beaver_builder_node_count( $candidate_id ) > 1 ) {
+            return $candidate_id;
+        }
+    }
+
+    return 0;
+}
+
+add_action( 'init', function() {
+    if ( 'page' !== get_option( 'show_on_front' ) ) {
+        return;
+    }
+
+    $current_front_page_id = (int) get_option( 'page_on_front' );
+    if ( $current_front_page_id > 0 && mm10_get_beaver_builder_node_count( $current_front_page_id ) > 1 ) {
+        return;
+    }
+
+    $preferred_homepage_id = mm10_get_preferred_homepage_id();
+    if ( $preferred_homepage_id <= 0 || $preferred_homepage_id === $current_front_page_id ) {
+        return;
+    }
+
+    update_option( 'page_on_front', $preferred_homepage_id );
+
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+}, 5 );
+
+function mm10_is_beaver_builder_page() {
+    if ( is_admin() || ! is_singular() ) {
+        return false;
+    }
+
+    $post_id = get_queried_object_id();
+    if ( ! $post_id ) {
+        return false;
+    }
+
+    return '1' === (string) get_post_meta( $post_id, '_fl_builder_enabled', true );
+}
+
+add_action( 'wp_enqueue_scripts', function() {
+    if ( ! mm10_is_beaver_builder_page() ) {
+        return;
+    }
+
+    foreach ( array( 'fl-builder-css', 'fl-slideshow', 'font-awesome-5', 'font-awesome' ) as $handle ) {
+        if ( wp_style_is( $handle, 'registered' ) ) {
+            wp_enqueue_style( $handle );
+        }
+    }
+}, 1000 );
+
 function mm10_page_has_sportspress_shortcode() {
     if ( ! is_singular() ) {
         return false;
@@ -1360,14 +1448,22 @@ add_filter( 'the_content', function( $content ) {
         return $content;
     }
 
-    $target = '<div  class="fl-module fl-module-box fl-node-fyex0ts6zm8p" data-node="fyex0ts6zm8p">';
-    if ( false === strpos( $content, $target ) || false !== strpos( $content, 'mm10-promise-sportspress-roster' ) ) {
+    if ( false !== strpos( $content, 'mm10-promise-sportspress-roster' ) || false === strpos( $content, 'fyex0ts6zm8p' ) ) {
         return $content;
     }
 
     $players = do_shortcode( '[mm10_promise_players team="mm10-academy" limit="5" title=""]' );
 
-    return str_replace( $target, $target . $players, $content );
+    // Match the target module even if spacing or class ordering differs between environments.
+    $pattern     = '/(<div\s+class="[^"]*\bfl-module\b[^"]*\bfl-module-box\b[^"]*\bfl-node-fyex0ts6zm8p\b[^"]*"\s+data-node="fyex0ts6zm8p">)/i';
+    $replacement = '$1' . $players;
+    $updated     = preg_replace( $pattern, $replacement, $content, 1, $count );
+
+    if ( 1 !== (int) $count || null === $updated ) {
+        return $content;
+    }
+
+    return $updated;
 }, 12 );
 
 // --- [mm10_coaches] — staff cards ---
