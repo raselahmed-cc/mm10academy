@@ -96,6 +96,132 @@ function mm10_get_beaver_builder_node_count( $post_id ) {
     return is_array( $data ) ? count( $data ) : 0;
 }
 
+function mm10_bb_seed_recursive_replace_urls( $value, $from, $to ) {
+    if ( '' === $from || $from === $to ) {
+        return $value;
+    }
+
+    if ( is_string( $value ) ) {
+        return str_replace( $from, $to, $value );
+    }
+
+    if ( is_array( $value ) ) {
+        foreach ( $value as $key => $item ) {
+            $value[ $key ] = mm10_bb_seed_recursive_replace_urls( $item, $from, $to );
+        }
+        return $value;
+    }
+
+    if ( is_object( $value ) ) {
+        foreach ( $value as $key => $item ) {
+            $value->{$key} = mm10_bb_seed_recursive_replace_urls( $item, $from, $to );
+        }
+        return $value;
+    }
+
+    return $value;
+}
+
+function mm10_bb_seed_find_target_post( array $record ) {
+    $source_id = isset( $record['ID'] ) ? (int) $record['ID'] : 0;
+    if ( $source_id > 0 ) {
+        $target_post = get_post( $source_id );
+        if ( $target_post instanceof WP_Post ) {
+            return $target_post;
+        }
+    }
+
+    if ( empty( $record['post_name'] ) || empty( $record['post_type'] ) ) {
+        return null;
+    }
+
+    $target_post = get_page_by_path( (string) $record['post_name'], OBJECT, (string) $record['post_type'] );
+
+    return $target_post instanceof WP_Post ? $target_post : null;
+}
+
+function mm10_apply_beaver_seed_once() {
+    $seed_version = '2026-05-03-v1';
+    if ( $seed_version === (string) get_option( 'mm10_bb_seed_version', '' ) ) {
+        return;
+    }
+
+    $seed_file = ABSPATH . 'ops/beaver-layouts-seed.json';
+    if ( ! is_file( $seed_file ) || ! is_readable( $seed_file ) ) {
+        return;
+    }
+
+    $payload = json_decode( (string) file_get_contents( $seed_file ), true );
+    if ( ! is_array( $payload ) || empty( $payload['records'] ) || ! is_array( $payload['records'] ) ) {
+        return;
+    }
+
+    $meta_keys = array(
+        '_fl_builder_enabled',
+        '_fl_builder_data',
+        '_fl_builder_draft',
+        '_fl_builder_data_settings',
+    );
+
+    $source_url = isset( $payload['site_url'] ) ? rtrim( (string) $payload['site_url'], '/' ) : '';
+    $target_url = rtrim( home_url( '/' ), '/' );
+    $updated    = 0;
+    $matched    = 0;
+
+    foreach ( $payload['records'] as $record ) {
+        if ( ! is_array( $record ) ) {
+            continue;
+        }
+
+        $target_post = mm10_bb_seed_find_target_post( $record );
+        if ( ! ( $target_post instanceof WP_Post ) ) {
+            continue;
+        }
+
+        $matched++;
+
+        foreach ( $meta_keys as $meta_key ) {
+            if ( ! array_key_exists( $meta_key, $record['meta'] ?? array() ) ) {
+                continue;
+            }
+
+            $new_value = mm10_bb_seed_recursive_replace_urls( $record['meta'][ $meta_key ], $source_url, $target_url );
+            update_post_meta( $target_post->ID, $meta_key, $new_value );
+            $updated++;
+        }
+
+        clean_post_cache( $target_post->ID );
+    }
+
+    if ( 0 === $matched || 0 === $updated ) {
+        return;
+    }
+
+    if ( ! empty( $payload['show_on_front'] ) ) {
+        update_option( 'show_on_front', (string) $payload['show_on_front'] );
+    }
+
+    if ( ! empty( $payload['page_on_front'] ) ) {
+        $front_page_id = (int) $payload['page_on_front'];
+        if ( $front_page_id > 0 ) {
+            update_option( 'page_on_front', $front_page_id );
+        }
+    }
+
+    if ( class_exists( 'FLBuilderModel' ) && method_exists( 'FLBuilderModel', 'delete_asset_cache_for_all_posts' ) ) {
+        FLBuilderModel::delete_asset_cache_for_all_posts();
+    }
+
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+
+    update_option( 'mm10_bb_seed_version', $seed_version, false );
+    update_option( 'mm10_bb_seed_applied_at', gmdate( 'c' ), false );
+}
+
+add_action( 'init', 'mm10_apply_beaver_seed_once', 4 );
+
 function mm10_get_preferred_homepage_id() {
     $candidates = array();
 
