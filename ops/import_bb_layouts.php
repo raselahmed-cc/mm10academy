@@ -8,7 +8,7 @@ if ( 'cli' !== PHP_SAPI ) {
 require_once dirname( __DIR__ ) . '/wp-load.php';
 
 $args = array_slice( $argv, 1 );
-$input_path = '';
+$input_path = dirname( __DIR__ ) . '/beaver-layouts-export.json';
 $apply      = false;
 
 foreach ( $args as $arg ) {
@@ -19,13 +19,9 @@ foreach ( $args as $arg ) {
     }
 }
 
-if ( '' === $input_path ) {
-    fwrite( STDERR, "Usage: php ops/import_bb_layouts.php --input=/path/to/beaver-layouts-export.json [--apply]\n" );
-    exit( 1 );
-}
-
 if ( ! is_file( $input_path ) || ! is_readable( $input_path ) ) {
     fwrite( STDERR, "Input file not found or not readable: {$input_path}\n" );
+    fwrite( STDERR, "Usage: php ops/import_bb_layouts.php [--input=/path/to/beaver-layouts-export.json] [--apply]\n" );
     exit( 1 );
 }
 
