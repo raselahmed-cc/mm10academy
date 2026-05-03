@@ -1,0 +1,34 @@
+# Keep server-only config and secrets
+wp-config.php
+.env
+wp-salt.php
+
+# Keep user-generated assets and runtime data
+wp-content/uploads/
+wp-content/backuply/
+wp-content/cache/
+wp-content/litespeed/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+
+# Keep server web config files
+.htaccess
+
+# Do not deploy local diagnostics and temp files
+check-*.php
+deep-diag.php
+diag-*.php
+fix-*.php
+local-phpinfo.php
+regen-cache.php
+test_page.html
+tp.html
+builder.html
+
+# Local/dev files
+.vscode/
+.github/
+*.zip
+*.log
+error_log
+debug.log

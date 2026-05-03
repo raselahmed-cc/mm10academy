@@ -161,11 +161,17 @@ function mm10_bb_seed_normalize_meta_value( $meta_key, $value ) {
         if ( ! is_array( $value ) ) {
             return $value;
         }
-
+        // Shallow cast only: node becomes stdClass, node->settings becomes stdClass.
+        // Fields INSIDE settings (connections, typography, data, etc.) stay as PHP arrays.
         foreach ( $value as $node_id => $node_value ) {
-            $value[ $node_id ] = mm10_bb_seed_array_to_mixed_object_tree( $node_value );
+            if ( is_array( $node_value ) ) {
+                $node_value = (object) $node_value;
+            }
+            if ( isset( $node_value->settings ) && is_array( $node_value->settings ) ) {
+                $node_value->settings = (object) $node_value->settings;
+            }
+            $value[ $node_id ] = $node_value;
         }
-
         return $value;
     }
 
@@ -195,7 +201,7 @@ function mm10_bb_seed_find_target_post( array $record ) {
 }
 
 function mm10_apply_beaver_seed_once() {
-    $seed_version = '2026-05-03-v2';
+    $seed_version = '2026-05-03-v3';
     if ( $seed_version === (string) get_option( 'mm10_bb_seed_version', '' ) ) {
         return;
     }
@@ -271,7 +277,7 @@ function mm10_apply_beaver_seed_once() {
         wp_cache_flush();
     }
 
-    update_option( 'mm10_bb_seed_version', $seed_version, false );
+    update_option( 'mm10_bb_seed_version', '2026-05-03-v3', false );
     update_option( 'mm10_bb_seed_applied_at', gmdate( 'c' ), false );
 }
 

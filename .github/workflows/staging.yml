@@ -32,3 +32,4 @@ jobs:
             cd ${{ secrets.STAGING_DEPLOY_PATH }}
             rm -rf wp-content/litespeed/cache/*
             wp cache flush --path=${{ secrets.STAGING_DEPLOY_PATH }} 2>/dev/null || true
+            [ -f .maintenance ] && rm -f .maintenance || true

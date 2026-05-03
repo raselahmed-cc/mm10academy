@@ -37,4 +37,6 @@ jobs:
             # Set correct permissions
             find . -type d -exec chmod 755 {} \;
             find . -type f -exec chmod 644 {} \;
-            chmod 600 .env wp-config.php
+            [ -f .env ] && chmod 600 .env || true
+            [ -f wp-config.php ] && chmod 600 wp-config.php || true
+            [ -f .maintenance ] && rm -f .maintenance || true
