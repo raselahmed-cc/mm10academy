@@ -19,6 +19,27 @@ final class FLBuilderFonts {
 	public static $preload_fa5 = array();
 
 	/**
+	 * Returns a typography settings array for a given field, allowing both
+	 * array and object storage shapes.
+	 *
+	 * @param object $settings Settings object.
+	 * @param string $field    Typography field name.
+	 * @return array
+	 */
+	private static function get_typography_setting( $settings, $field ) {
+		if ( ! is_object( $settings ) || empty( $settings->{ $field } ) ) {
+			return array();
+		}
+
+		$value = $settings->{ $field };
+		if ( is_object( $value ) ) {
+			$value = get_object_vars( $value );
+		}
+
+		return is_array( $value ) ? $value : array();
+	}
+
+	/**
 	 * @since 1.9.5
 	 * @return void
 	 */
@@ -293,16 +314,17 @@ final class FLBuilderFonts {
 		);
 
 		foreach ( $fields as $field ) {
-			if ( empty( $settings->{ $field } ) ) {
+			$typography = self::get_typography_setting( $settings, $field );
+			if ( empty( $typography ) || empty( $typography['font_family'] ) ) {
 				continue;
 			}
-			$font   = $settings->{ $field }['font_family'];
-			$weight = isset( $settings->{ $field }['font_weight'] ) && '' !== $settings->{ $field }['font_weight'] ? $settings->{ $field }['font_weight'] : '400';
+			$font   = $typography['font_family'];
+			$weight = isset( $typography['font_weight'] ) && '' !== $typography['font_weight'] ? $typography['font_weight'] : '400';
 
 			// handle google italics.
 			if ( isset( $google[ $font ] ) ) {
 				$selected_weight = $weight;
-				$italic          = ( isset( $settings->{ $field }['font_style'] ) ) ? $settings->{ $field }['font_style'] : '';
+				$italic          = isset( $typography['font_style'] ) ? $typography['font_style'] : '';
 
 				if ( ! $italic && count( $google[ $font ] ) === 1 && 'italic' === $google[ $font ][0] ) {
 					$italic = 'italic';
@@ -315,12 +337,12 @@ final class FLBuilderFonts {
 				}
 			}
 
-			if ( 'Molle' === $settings->{ $field }['font_family'] ) {
+			if ( 'Molle' === $typography['font_family'] ) {
 				$weight = 'i';
 			}
 
 			self::add_font( array(
-				'family' => $settings->{ $field }['font_family'],
+				'family' => $typography['font_family'],
 				'weight' => $weight,
 			) );
 		}
@@ -348,13 +370,18 @@ final class FLBuilderFonts {
 
 			if ( 'font' == $field['type'] && isset( $module->settings->$name ) ) {
 				self::add_font( $module->settings->$name );
-			} elseif ( 'typography' == $field['type'] && ! empty( $module->settings->$name ) && isset( $module->settings->{ $name }['font_family'] ) ) {
-				$fname  = $module->settings->{ $name }['font_family'];
-				$weight = isset( $module->settings->{ $name }['font_weight'] ) && '' !== $module->settings->{ $name }['font_weight'] ? $module->settings->{ $name }['font_weight'] : '400';
+			} elseif ( 'typography' == $field['type'] ) {
+				$typography = self::get_typography_setting( $module->settings, $name );
+				if ( empty( $typography ) || empty( $typography['font_family'] ) ) {
+					continue;
+				}
+
+				$fname  = $typography['font_family'];
+				$weight = isset( $typography['font_weight'] ) && '' !== $typography['font_weight'] ? $typography['font_weight'] : '400';
 				// handle google italics.
 				if ( isset( $google[ $fname ] ) ) {
 					$selected_weight = $weight;
-					$italic          = ( isset( $module->settings->{ $name }['font_style'] ) ) ? $module->settings->{ $name }['font_style'] : '';
+					$italic          = isset( $typography['font_style'] ) ? $typography['font_style'] : '';
 					if ( ! $italic && count( $google[ $fname ] ) === 1 && 'italic' === $google[ $fname ][0] ) {
 						$italic = 'italic';
 					}
@@ -366,12 +393,12 @@ final class FLBuilderFonts {
 					}
 				}
 
-				if ( 'Molle' === $module->settings->{ $name }['font_family'] ) {
+				if ( 'Molle' === $typography['font_family'] ) {
 					$weight = 'i';
 				}
 
 				self::add_font( array(
-					'family' => $module->settings->{ $name }['font_family'],
+					'family' => $typography['font_family'],
 					'weight' => $weight,
 				), $bold );
 			} elseif ( isset( $field['form'] ) ) {
